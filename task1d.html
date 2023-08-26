@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var request =new XMLHttpRequest()
+        request.open('GET','https://restcountries.com/v3.1/all')
+        request.send()
+        request.onload=function(){
+            //console.log("page loaded")
+            var data=JSON.parse(request.response)
+            //console.log(data)
+            let population=data.map((a)=>{
+                var arr= a.population;
+                return arr;
+            })
+            //console.log(population);
+            //console.log(arr);
+            let totalPopulation=population.reduce((a1,a2)=>{
+                var arr2=a1+a2;
+                return arr2
+            })
+            console.log(totalPopulation);
+        }
+    </script>
+</body>
+</html>
