@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        fetch('https://restcountries.com/v3.1/all')
+  .then(response => response.json())
+  .then(data => {
+    const usdCountries = data.filter(country => country.currencies.USD);
+    const usdCountryNames = usdCountries.map(country => country.name.common);
+    console.log(usdCountryNames);
+  });
+
+// Using country-to-currency library
+const countryToCurrency = require('country-to-currency');
+const currencyCode = countryToCurrency['US']; // USD
+console.log(currencyCode);
+
+// Formatting numbers as USD currency string
+const price = 14340;
+const usdFormatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD'
+});
+const formattedPrice = usdFormatter.format(price);
+console.log(formattedPrice);
+    </script>
+</body>
+</html>
