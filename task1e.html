@@ -7,27 +7,18 @@
 </head>
 <body>
     <script>
-        fetch('https://restcountries.com/v3.1/all')
-  .then(response => response.json())
-  .then(data => {
-    const usdCountries = data.filter(country => country.currencies.USD);
-    const usdCountryNames = usdCountries.map(country => country.name.common);
-    console.log(usdCountryNames);
-  });
-
-// Using country-to-currency library
-const countryToCurrency = require('country-to-currency');
-const currencyCode = countryToCurrency['US']; // USD
-console.log(currencyCode);
-
-// Formatting numbers as USD currency string
-const price = 14340;
-const usdFormatter = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: 'USD'
-});
-const formattedPrice = usdFormatter.format(price);
-console.log(formattedPrice);
+         var request =new XMLHttpRequest()
+        request.open('GET','https://restcountries.com/v3.1/all')
+        request.send()
+        request.onload=function(){
+            //console.log("page loaded")
+            var data=JSON.parse(request.response)
+            //console.log(data)
+            let currencies=data.filter((a)=>{
+                var arr=a.currencies="USD";
+                return arr
+            })
+            console.log(currencies);
     </script>
 </body>
 </html>
